@@ -9,10 +9,11 @@
     background: none;
     border: none;
     cursor: pointer;
-    background: white;
+    color: #bcdaf3;
+    background: #232528;
     width: 250px;
     padding: 10px 30px;
-    margin: 0 10px;
+    margin: 0 5px;
     border-radius: 200px;
 }
 
@@ -20,14 +21,19 @@ body {
     font-family: sans-serif;
     background-image: url(/Assets/69824713-blur-wallpapers.jpg);
     background-size: cover;
+    color: #232528;
 
     nav {
-        background: white;
+        font-size: 24px;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 50px ;
+        grid-template-rows: 70px;
         justify-items: center;
         align-items: center;
+        #logo{
+            font-weight: bolder;
+            font-size: 28px;
+        }
         #links {
             display: flex;
             justify-content: space-between;
@@ -35,14 +41,33 @@ body {
                 margin: 0px 24px;
             }
         }
+        div{
+            position: relative;
+            span{
+                i{
+                    position: absolute;
+                    top: 10px;
+                    right: 25px;
+                }
+            }
+        }
         #search {
-            display: flex;
-            justify-content: space-between;
+            background-color: #bcdaf3;
+            font-size: 20px;
+            padding: 10px 30px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 200px;
+            max-width: 280px;
+            &:focus {
+                outline: none;
+            }
         }
     }
     #hero {
+        margin: 0px 10%;
         text-align: center;
-        height: calc(100vh - 50px);
+        height: calc(100vh - 70px);
         display: grid;
         grid-template-columns: 1fr;
         grid-template-rows: 1.5fr 1fr;
@@ -52,27 +77,41 @@ body {
             font-size: 98px;
             margin-bottom: 32px;
             font-weight: bold;
+            line-height: 1.2;
+            letter-spacing: -3px;
         }
         h3 {
-            font-size: 36px;
+            font-size: 52px;
             margin-bottom: 16px;
+            line-height: 1.4;
+            letter-spacing: -2px;
         }
         p {
-            font-size: 24px;
+            font-size: 30px;
+            margin: 0px 10%;
         }
         form {
             align-self: start;
             h5 {
-                font-size: 24px;
-                margin-bottom: 32px;
+                font-size: 34px;
+                margin-bottom: 28px;
+                letter-spacing: -1.4px;
+                line-height: 2;
+                //color: #EAF6FF;
             }
             select {
-                background: none;
-                border: solid black 2px;
+                color: #232528;
+                border: none;
                 font-size: 24px;
-                &:focus{
+                background: #bcdaf3;
+                border-radius: 200px;
+                width: 225px;
+                padding: 10px 30px;
+                margin: 0 5px;
+                &:focus {
                     outline: none;
                 }
+                
             }
             button {
                 @include button();
