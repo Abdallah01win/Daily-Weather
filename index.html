@@ -1,32 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Styles/Main.min.css">
     <title>Daily Weather</title>
 </head>
+
 <body>
-    <!-- initial form -->
-    <form >
-        <h1 id="form-header">Pleas, Select a Country and a city</h1>
-        <select name="country" id="form-country" lable='country' aria-placeholder="Country">
-            <option >Select Country</option>
-            <option value="Spain">Spain</option>
-            <option value="Norway">Norway</option>
-            <option value="Italy">Italy</option>
-            <option value="Switserland">Switserland</option>
-            <option value="Iceland">Iceland</option>
-            <option value="Finland">Finland</option>
-            
-        </select>
+    <nav>
+        <div>Logo</div>
+        <div id="links">
+            <div>Somthing</div>
+            <div>Contact</div>
+            <div>About us</div>
+        </div>
+        <div id="search">
 
-        <select name="city" id="form-city" lable='country'>
-            <option >Select city</option>
-        </select>
-        <button id="submit">Check Weather</button>
-    </form>
+            <div>Search</div>
+        </div>
 
+    </nav>
+    <section id='hero'>
+        <div>
+            <h1>Daily Weather</h1>
+            <h3>Planning your day? Let's make sure nature donesn't have other plans!</h3>
+            <p>Daily Weather provides you with all the information you need to prevent the weather from ruining your day.
+            </p>
+        </div>
+
+        
+
+        <!-- initial form -->
+        <form>
+            <h5 id="form-header">Pleas, Select a Country and a city</h5>
+
+            <select name="country" id="form-country" lable='country' aria-placeholder="Country">
+                <option>Select Country</option>
+                <option value="Spain">Spain</option>
+                <option value="Norway">Norway</option>
+                <option value="Italy">Italy</option>
+                <option value="Switserland">Switserland</option>
+                <option value="Iceland">Iceland</option>
+                <option value="Finland">Finland</option>
+            </select>
+
+            <select name="city" id="form-city" lable='country'>
+                <option>Select city</option>
+            </select>
+            <button id="submit">Check Weather</button>
+        </form>
+    </section>
     <script src="/Scripts/Weather-app.js"></script>
 </body>
+
 </html>

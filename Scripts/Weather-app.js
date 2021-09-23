@@ -9,7 +9,6 @@ const worldCities = {
 
 country.addEventListener('change', () => {
     
-    city.option.nextElementSibling.remove(Option);
     let countryValue = country.options[country.selectedIndex].value;
         creatNewOption(countryValue)
 })

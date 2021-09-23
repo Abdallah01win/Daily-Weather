@@ -1,0 +1,82 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    box-sizing: border-box;
+}
+@mixin button {
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    background: white;
+    width: 250px;
+    padding: 10px 30px;
+    margin: 0 10px;
+    border-radius: 200px;
+}
+
+body {
+    font-family: sans-serif;
+    background-image: url(/Assets/69824713-blur-wallpapers.jpg);
+    background-size: cover;
+
+    nav {
+        background: white;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 50px ;
+        justify-items: center;
+        align-items: center;
+        #links {
+            display: flex;
+            justify-content: space-between;
+            div {
+                margin: 0px 24px;
+            }
+        }
+        #search {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    #hero {
+        text-align: center;
+        height: calc(100vh - 50px);
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1.5fr 1fr;
+        justify-items: center;
+        align-items: center;
+        h1 {
+            font-size: 98px;
+            margin-bottom: 32px;
+            font-weight: bold;
+        }
+        h3 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 24px;
+        }
+        form {
+            align-self: start;
+            h5 {
+                font-size: 24px;
+                margin-bottom: 32px;
+            }
+            select {
+                background: none;
+                border: solid black 2px;
+                font-size: 24px;
+                &:focus{
+                    outline: none;
+                }
+            }
+            button {
+                @include button();
+            }
+        }
+    }
+}
