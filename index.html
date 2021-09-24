@@ -40,22 +40,24 @@
         <form>
             <h5 id="form-header">Please Select a Country and a city.</h5>
 
-            <select name="country" id="form-country" lable='country'>
-                <option>Select Country</option>
-                <option value="Spain">Spain</option>
-                <option value="Norway">Norway</option>
+            <select name="country" id="form-country" lable='country' required>
+                <option>Select Country</option> 
+                <option value="Germany">Germany</option>
                 <option value="Italy">Italy</option>
-                <option value="Switserland">Switserland</option>
-                <option value="Iceland">Iceland</option>
-                <option value="Finland">Finland</option>
+                <option value="Norway">Norway</option>
+                <option value="Spain">Spain</option>
+                <option value="Switzerland">Switzerland</option>
             </select>
 
-            <select name="city" id="form-city" lable='country'>
+            <select name="city" id="form-city" lable='country' required>
                 <option>Select city</option>
             </select>
             <button id="submit">Check Weather</button>
         </form>
     </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"
+        integrity="sha512-lTLt+W7MrmDfKam+r3D2LURu0F47a3QaW5nF0c6Hl0JDZ57ruei+ovbg7BrZ+0bjVJ5YgzsAWE+RreERbpPE1g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/phosphor-icons"></script>
     <script src="/Scripts/Weather-app.js"></script>
 </body>

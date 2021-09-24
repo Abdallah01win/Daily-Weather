@@ -4,13 +4,16 @@
     list-style: none;
     box-sizing: border-box;
 }
+$accentColor: #bcdaf3;
+$darkColor:#232528;
+
 @mixin button {
     font-size: 24px;
     background: none;
     border: none;
     cursor: pointer;
-    color: #bcdaf3;
-    background: #232528;
+    color: $accentColor;
+    background: $darkColor;
     width: 250px;
     padding: 10px 30px;
     margin: 0 5px;
@@ -21,7 +24,7 @@ body {
     font-family: sans-serif;
     background-image: url(/Assets/69824713-blur-wallpapers.jpg);
     background-size: cover;
-    color: #232528;
+    color: $darkColor;
 
     nav {
         font-size: 24px;
@@ -52,7 +55,7 @@ body {
             }
         }
         #search {
-            background-color: #bcdaf3;
+            background-color: $accentColor;
             font-size: 20px;
             padding: 10px 30px;
             margin: 0 5px;
@@ -74,14 +77,14 @@ body {
         justify-items: center;
         align-items: center;
         h1 {
-            font-size: 98px;
+            font-size: 86px;
             margin-bottom: 32px;
             font-weight: bold;
             line-height: 1.2;
             letter-spacing: -3px;
         }
         h3 {
-            font-size: 52px;
+            font-size: 44px;
             margin-bottom: 16px;
             line-height: 1.4;
             letter-spacing: -2px;
@@ -93,17 +96,17 @@ body {
         form {
             align-self: start;
             h5 {
-                font-size: 34px;
+                font-size: 30px;
                 margin-bottom: 28px;
                 letter-spacing: -1.4px;
                 line-height: 2;
                 //color: #EAF6FF;
             }
             select {
-                color: #232528;
+                color: $darkColor;
                 border: none;
                 font-size: 24px;
-                background: #bcdaf3;
+                background: $accentColor;
                 border-radius: 200px;
                 width: 225px;
                 padding: 10px 30px;
