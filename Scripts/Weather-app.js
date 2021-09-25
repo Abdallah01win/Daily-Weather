@@ -38,37 +38,52 @@ submit.addEventListener('click', (e) => {
 
 const getData = async () => {
     try {
-        const weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&appid=cbcafb424d21d0e5649df03b5bb0e352`)
+        const weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=cbcafb424d21d0e5649df03b5bb0e352`)
         displayData(weatherData)
-        //console.log(weatherData.data.weather[0].main)
     } catch (e) {
         console.log(e)
     }
-
 }
 
 // Displays general weather Status
 
 const displayData = (resp) => {
+    //CreatHTMLElements
     const generalStatus = document.createElement('DIV');
-    generalStatus.setAttribute('id', 'weatherStatus');
-
     const main = document.createElement('DIV')
-    main.setAttribute('id','main'); 
-
-    main.append(resp.data.weather[0].main);
-    generalStatus.append(main);
-
     const description = document.createElement('DIV')
-    description.setAttribute('id','description');
-    description.append(resp.data.weather[0].description)
-    generalStatus.append(description);
-
-    const weatherIcon = resp.data.weather[0].icon
     const icon = document.createElement('img')
-    icon.setAttribute('id','icon');
-    icon.src = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`
-    generalStatus.append(icon)
+    const temp = document.createElement('DIV')
+    const minTemp = document.createElement('DIV')
+    const maxTemp = document.createElement('DIV')
 
-    document.body.append(generalStatus)
+    //setNewAttrebutes
+    generalStatus.setAttribute('id', 'weatherStatus');
+    main.setAttribute('id','main');
+    description.setAttribute('id','description');
+    icon.setAttribute('id','icon');
+    temp.setAttribute('id','temp');
+    minTemp.setAttribute('id','minTemp');
+    maxTemp.setAttribute('id','maxTemp');
+
+    const weatherIcon = resp.data.weather[0].icon;
+    icon.src = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+
+    //appendData
+    main.append(resp.data.weather[0].main);
+    description.append(resp.data.weather[0].description);
+    temp.append(resp.data.main.temp);
+    minTemp.append(resp.data.main.temp_min);
+    maxTemp.append(resp.data.main.temp_max);
+    
+    //appendToDOM
+    generalStatus.append(icon);
+    generalStatus.append(main);
+    generalStatus.append(temp);
+    generalStatus.append(minTemp);
+    generalStatus.append(maxTemp);
+    generalStatus.append(description);
+    document.body.append(generalStatus);
 }
+
+
