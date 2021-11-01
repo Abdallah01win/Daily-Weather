@@ -2,6 +2,7 @@ const country = document.querySelector('#form-country');
 const city = document.querySelector('#form-city');
 const submit = document.querySelector('#submit');
 let isDisplayed = false
+let cityOptions = false
 const worldCities = {
     Spain: ['Madrid', 'Barcelona', 'Valencia', 'Seville', 'Zaragoza', 'Málaga', 'Murcia', 'Bilbao', 'Alicante', 'Granada'],
 
@@ -16,10 +17,20 @@ const worldCities = {
 
 country.addEventListener('change', () => {
     const countryValue = country.options[country.selectedIndex].value;
-    creatNewOption(countryValue)
+    if (cityOptions === false) {
+        creatNewOption(countryValue)
+        cityOptions = true
+    }
+    else if (cityOptions === true) {
+        for (i = city.length - 1; i >= 0; i--) {
+            city[i].parentNode.removeChild(city[i]);
+        }
+        creatNewOption(countryValue)
+    }
 })
 
 function creatNewOption(countryValue) {
+
     for (const newCity of worldCities[countryValue]) {
         const newOption = document.createElement('option');
         newOption.value = newCity;
@@ -36,12 +47,39 @@ submit.addEventListener('click', (e) => {
 // Recives data from the API
 const getData = async () => {
     try {
-        const weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=cbcafb424d21d0e5649df03b5bb0e352`)
+        const weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=cbcafb424d21d0e5649df03b5bb0e352`);
         displayData(weatherData)
-    } catch (e) {
-        console.log(e)
+        window.scrollTo(0, document.body.scrollHeight);
+    } catch (err) {
+        let errorCode = err.message.substring(err.message.length - 3);
+
+        function displayError(message){
+            const dataContainer = document.createElement('DIV');
+            dataContainer.setAttribute('id', 'dataContainer');
+            let error = document.createElement('DIV');
+            error.append(message);
+            dataContainer.append(error);
+            document.body.append(dataContainer);
+            window.scrollTo(0, document.body.scrollHeight);
+            isDisplayed = true
+        }
+
+        if (errorCode === "400" || "401") {
+            message = 'Our servers are a bit under the weather, pleas try again Later.';
+            displayError(message);
+           
+        }
+        else if (errorCode === "404") {
+            message = 'The requested information was not found, pleas check your input';
+            displayError(message);
+        }
+        else if (errorCode === "500" || "503") {
+            message = 'Our servers are a bit under the weather, pleas try again Later.';
+            displayError(message);
+        }
     }
 }
+
 
 // Displays general weather Status
 
