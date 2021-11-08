@@ -8,9 +8,10 @@ $accentColor: #a9c4db;
 $darkColor:#232528;
 
 @mixin button {
+    font-family: inherit;
     font-size: 24px;
     background: none;
-    border: none;
+    border: solid 1px $accentColor;
     cursor: pointer;
     color: $accentColor;
     background: $darkColor;
@@ -21,7 +22,7 @@ $darkColor:#232528;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'PT Sans', sans-serif;
     background-image: url(/Assets/69824713-blur-wallpapers.jpg);
     background-size: cover;
     color: $darkColor;
@@ -56,10 +57,10 @@ body {
         }
         #search {
             background-color: $accentColor;
+            border: solid 1px $darkColor;
             font-size: 20px;
             padding: 10px 30px;
             margin: 0 5px;
-            border: none;
             border-radius: 200px;
             max-width: 280px;
             &:focus {
@@ -67,6 +68,7 @@ body {
             }
         }
     }
+    
     #hero {
         margin: 0px 10%;
         text-align: center;
@@ -87,24 +89,20 @@ body {
             font-size: 44px;
             margin-bottom: 16px;
             line-height: 1.4;
-            letter-spacing: -2px;
+            letter-spacing: -0.5px;
         }
-        p {
-            font-size: 30px;
-            margin: 0px 10%;
-        }
+        
         form {
             align-self: start;
             h5 {
                 font-size: 30px;
-                margin-bottom: 28px;
-                letter-spacing: -1.4px;
+                margin-bottom: 28px;        
                 line-height: 2;
-                //color: #EAF6FF;
             }
             select {
+                font-family: inherit;
                 color: $darkColor;
-                border: none;
+                border: solid 1px $darkColor;
                 font-size: 24px;
                 background: $accentColor;
                 border-radius: 200px;
@@ -130,7 +128,7 @@ body {
         display: grid;
         grid-template-areas: 'icon icon icon'
                              'general temp additional';
-        font-size: 20px;
+        font-size: 22px;
         justify-content: center;
         align-items:center ;
         div{

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./Styles/Main.min.css">
     <title>Daily Weather</title>
 </head>
@@ -24,17 +25,13 @@
                 <i class="ph-magnifying-glass"></i>
             </span>
         </div>
-
     </nav>
+    
     <section id='hero'>
         <div>
             <h1>Daily Weather</h1>
             <h3>Planning your day? Let's first make sure nature donesn't have other plans!</h3>
-            <!-- <p>Daily Weather provides you with all the forcast information you need to prevent the weather from ruining your day.
-            </p> -->
         </div>
-
-
 
         <!-- initial form -->
         <form>
@@ -47,21 +44,30 @@
                 <option value="Norway">Norway</option>
                 <option value="Spain">Spain</option>
                 <option value="Switzerland">Switzerland</option>
+                <option value="England">England</option>
+                <option value="France">France</option>
+                <option value="United_Stats">United Stats</option>
             </select>
 
-            <select name="city" id="form-city" lable='country' required>
+            <select name="city" id="form-city" lable='city' required>
                 <option>Select city</option>
             </select>
+            <select name="unit" id="form-unit" lable='unit' required>
+                <option value ="">Unit System</option>
+                <option value="metric">Metric</option>
+                <option value="imperial">Imperial</option>
+            </select>
+
             <button id="submit">Check Weather</button>
         </form>
 
-        
+
 
 
     </section>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/phosphor-icons"></script>
-    <script src="./Scripts/Weather-app.js"></script>
+    <script type="module" src="./Scripts/Weather-app.js"></script>
 </body>
 
 </html>

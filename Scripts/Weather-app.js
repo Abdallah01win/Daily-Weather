@@ -1,18 +1,24 @@
+import {worldCities} from './cities-Db.js' ;
+
 const country = document.querySelector('#form-country');
 const city = document.querySelector('#form-city');
+const units = document.querySelector('#form-unit');
 const submit = document.querySelector('#submit');
+
 let isDisplayed = false
 let cityOptions = false
-const worldCities = {
-    Spain: ['Madrid', 'Barcelona', 'Valencia', 'Seville', 'Zaragoza', 'Málaga', 'Murcia', 'Bilbao', 'Alicante', 'Granada'],
 
-    Italy: ['Rome', 'Milan', 'Naples', 'Turin', 'Palermo', 'Genoa', 'Bologna', 'Florence', 'Bari', 'Venice'],
-
-    Germany: ['Berlin', 'Hamburg', 'Munich', 'Köln', 'Frankfurt', 'Stuttgart', 'Düsseldorf', 'Dortmund', 'Essen', 'Leipzig'],
-
-    Norway: ['Oslo', 'Trondheim', 'Drammen', '	Kristiansand', 'Ålesund', 'Tønsberg', 'Moss', 'Haugesund', 'Arendal', 'Hamar'],
-
-    Switzerland: ['Zürich', 'Geneva', 'Basel', 'Lausanne', 'Bern', 'Winterthur', 'Lucerne', 'St. Gallen', 'Lugano', 'Biel/Bienne']
+function selectUnit() {
+    if (units.value === 'metric') {
+        let tempUnit = 'C';
+        let lenghtUnit = 'KM/H';
+        console.log(tempUnit, lenghtUnit)
+    }
+    else if (units.value === 'imperial') {
+        let tempUnit = 'F';
+        let lenghtUnit = 'MPH';
+        console.log(tempUnit, lenghtUnit)
+    }
 }
 
 country.addEventListener('change', () => {
@@ -22,7 +28,7 @@ country.addEventListener('change', () => {
         cityOptions = true
     }
     else if (cityOptions === true) {
-        for (i = city.length - 1; i >= 0; i--) {
+        for (let i = city.length - 1; i >= 0; i--) {
             city[i].parentNode.removeChild(city[i]);
         }
         creatNewOption(countryValue)
@@ -47,13 +53,15 @@ submit.addEventListener('click', (e) => {
 // Recives data from the API
 const getData = async () => {
     try {
-        const weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=metric&appid=cbcafb424d21d0e5649df03b5bb0e352`);
-        displayData(weatherData)
+        const weatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${city.value}&units=${units.value}&appid=cbcafb424d21d0e5649df03b5bb0e352`);
+        displayData(weatherData);
         window.scrollTo(0, document.body.scrollHeight);
-    } catch (err) {
+    }
+    // Error Hanndeling
+    catch (err) {
         let errorCode = err.message.substring(err.message.length - 3);
 
-        function displayError(message){
+        function displayError(message) {
             const dataContainer = document.createElement('DIV');
             dataContainer.setAttribute('id', 'dataContainer');
             let error = document.createElement('DIV');
@@ -67,7 +75,7 @@ const getData = async () => {
         if (errorCode === "400" || "401") {
             message = 'Our servers are a bit under the weather, pleas try again Later.';
             displayError(message);
-           
+
         }
         else if (errorCode === "404") {
             message = 'The requested information was not found, pleas check your input';
@@ -84,20 +92,10 @@ const getData = async () => {
 // Displays general weather Status
 
 const displayData = (resp) => {
-    // try to make a function that creates HTML Divs
-    /*const divs = [
-        'dataContainer', 'generalStatus', 'temStatus', 'additinalInfo'
-    ]
-    const creatDivs = (divs) =>{
-        for (let i = 0; i < divs.length; i++) {
-            const divs[i] = document.createElement('DIV');
-        }
-    }
-    creatDivs(divs)*/
+
     if (isDisplayed === true) {
         document.body.lastChild.remove()
     }
-
 
     //CreatHTMLElements
     const dataContainer = document.createElement('DIV');
@@ -135,13 +133,28 @@ const displayData = (resp) => {
     icon.src = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
 
     //appendData
+    let tempUnit = '';
+    let lenghtUnit = '';
+    if (units.value === 'metric') {
+        tempUnit = 'C';
+        lenghtUnit = 'KM/H';
+    }
+    else if (units.value === 'imperial') {
+        tempUnit = 'F';
+        lenghtUnit = 'MPH';
+    }
+    else if (units.value === '') {
+        tempUnit = 'K';
+        lenghtUnit = 'KM/H';
+    }
+
     main.append(resp.data.weather[0].main);
     description.append(resp.data.weather[0].description);
-    temp.append(`Temperature: ${resp.data.main.temp} C`);
-    feels.append(`Feels Like: ${resp.data.main.feels_like} C`);
-    minTemp.append(`Min Temperature: ${resp.data.main.temp_min} C`);
-    maxTemp.append(`Max Temperature: ${resp.data.main.temp_max} C`);
-    wind.append(`Wind Speed: ${resp.data.wind.speed} KM/H`);
+    temp.append(`Temperature: ${resp.data.main.temp} ${tempUnit}`);
+    feels.append(`Feels Like: ${resp.data.main.feels_like} ${tempUnit}`);
+    minTemp.append(`Min Temperature: ${resp.data.main.temp_min} ${tempUnit}`);
+    maxTemp.append(`Max Temperature: ${resp.data.main.temp_max} ${tempUnit}`);
+    wind.append(`Wind Speed: ${resp.data.wind.speed} ${lenghtUnit}`);
     humidity.append(`Humidity: ${resp.data.main.humidity} %`);
     pressure.append(`Pressure: ${resp.data.main.pressure} P`);
 
@@ -149,8 +162,7 @@ const displayData = (resp) => {
     generalStatus.append(main, description, feels);
     temStatus.append(temp, maxTemp, minTemp);
     additinalInfo.append(wind, humidity, pressure);
-    dataContainer.append(icon, generalStatus, temStatus, additinalInfo)
-
+    dataContainer.append(icon, generalStatus, temStatus, additinalInfo);
     document.body.append(dataContainer);
     isDisplayed = true
 }
