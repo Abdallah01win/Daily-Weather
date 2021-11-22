@@ -99,6 +99,7 @@ const displayData = (resp) => {
 
     //CreatHTMLElements
     const dataContainer = document.createElement('DIV');
+    const flexContainer = document.createElement('DIV');
     const generalStatus = document.createElement('DIV');
     const temStatus = document.createElement('DIV');
     const additinalInfo = document.createElement('DIV');
@@ -115,6 +116,7 @@ const displayData = (resp) => {
 
     //setNewAttrebutes
     dataContainer.setAttribute('id', 'dataContainer');
+    flexContainer.setAttribute('id', 'flexContainer');
     generalStatus.setAttribute('id', 'generalStatus');
     temStatus.setAttribute('id', 'temStatus');
     additinalInfo.setAttribute('id', 'additinalInfo');
@@ -162,7 +164,8 @@ const displayData = (resp) => {
     generalStatus.append(main, description, feels);
     temStatus.append(temp, maxTemp, minTemp);
     additinalInfo.append(wind, humidity, pressure);
-    dataContainer.append(icon, generalStatus, temStatus, additinalInfo);
+    flexContainer.append(generalStatus, temStatus, additinalInfo)
+    dataContainer.append(icon, flexContainer);
     document.body.append(dataContainer);
     isDisplayed = true
 }
