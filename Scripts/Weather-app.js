@@ -5,21 +5,15 @@ const city = document.querySelector('#form-city');
 const units = document.querySelector('#form-unit');
 const submit = document.querySelector('#submit');
 
+// Making the Navigation Work
+const ham = document.getElementById('ham');
+const links = document.getElementById('links');
+ham.addEventListener('click', ()=>{
+    links.classList.toggle('show-nav');
+})
+
 let isDisplayed = false
 let cityOptions = false
-
-function selectUnit() {
-    if (units.value === 'metric') {
-        let tempUnit = 'C';
-        let lenghtUnit = 'KM/H';
-        console.log(tempUnit, lenghtUnit)
-    }
-    else if (units.value === 'imperial') {
-        let tempUnit = 'F';
-        let lenghtUnit = 'MPH';
-        console.log(tempUnit, lenghtUnit)
-    }
-}
 
 country.addEventListener('change', () => {
     const countryValue = country.options[country.selectedIndex].value;
@@ -36,7 +30,6 @@ country.addEventListener('change', () => {
 })
 
 function creatNewOption(countryValue) {
-
     for (const newCity of worldCities[countryValue]) {
         const newOption = document.createElement('option');
         newOption.value = newCity;
@@ -96,23 +89,26 @@ const displayData = (resp) => {
     if (isDisplayed === true) {
         document.body.lastChild.remove()
     }
+    function creat(element = 'DIV'){
+        return document.createElement(element);
+    }
 
     //CreatHTMLElements
-    const dataContainer = document.createElement('DIV');
-    const flexContainer = document.createElement('DIV');
-    const generalStatus = document.createElement('DIV');
-    const temStatus = document.createElement('DIV');
-    const additinalInfo = document.createElement('DIV');
-    const main = document.createElement('DIV')
-    const description = document.createElement('DIV')
-    const feels = document.createElement('DIV')
-    const icon = document.createElement('img')
-    const temp = document.createElement('DIV')
-    const minTemp = document.createElement('DIV')
-    const maxTemp = document.createElement('DIV')
-    const wind = document.createElement('DIV')
-    const humidity = document.createElement('DIV')
-    const pressure = document.createElement('DIV')
+    const dataContainer = creat();
+    const flexContainer = creat();
+    const generalStatus = creat();
+    const temStatus = creat();
+    const additinalInfo = creat();
+    const main = creat();
+    const description = creat();
+    const feels = creat();
+    const icon = creat('img');
+    const temp = creat();
+    const minTemp = creat();
+    const maxTemp = creat();
+    const wind = creat();
+    const humidity = creat();
+    const pressure = creat();
 
     //setNewAttrebutes
     dataContainer.setAttribute('id', 'dataContainer');
@@ -134,7 +130,7 @@ const displayData = (resp) => {
     const weatherIcon = resp.data.weather[0].icon;
     icon.src = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
 
-    //appendData
+    // cheking Mesurment units
     let tempUnit = '';
     let lenghtUnit = '';
     if (units.value === 'metric') {
@@ -149,7 +145,7 @@ const displayData = (resp) => {
         tempUnit = 'K';
         lenghtUnit = 'KM/H';
     }
-
+    //append Data to HTML Elements
     main.append(resp.data.weather[0].main);
     description.append(resp.data.weather[0].description);
     temp.append(`Temperature: ${resp.data.main.temp} ${tempUnit}`);
@@ -169,5 +165,4 @@ const displayData = (resp) => {
     document.body.append(dataContainer);
     isDisplayed = true
 }
-
 

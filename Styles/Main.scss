@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 $accentColor: #a9c4db;
-$darkColor:#232528;
+$darkColor: #232528;
 
 @mixin button {
     font-family: inherit;
@@ -22,49 +22,51 @@ $darkColor:#232528;
 }
 
 body {
-    font-family: 'PT Sans', sans-serif;
+    font-family: "PT Sans", sans-serif;
     background-image: url(/Assets/69824713-blur-wallpapers.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     color: $darkColor;
 
-    nav {
+    nav{
         font-size: 26px;
         display: flex;
         align-items: center;
-        justify-content:space-between;
+        justify-content: space-between;
         margin: 0px 10%;
+        padding: 10px 0px;
         letter-spacing: 1px;
-        #logo{
+        #logo {
             font-weight: bolder;
             font-size: 40px;
-            
         }
+
         #links {
             display: flex;
             justify-content: space-between;
             transition: all 300ms ease-out;
             .link {
                 margin: 0px 24px;
-                &:hover{
+                &:hover {
                     transform: scale(1.15, 1.15);
                 }
             }
-            #ham{
-                display: none;
-            }
         }
-        div{
+
+        #s-div{
             position: relative;
-            span{
-                i{
+            span {
+                i {
                     position: absolute;
                     top: 10px;
                     right: 25px;
                 }
             }
         }
-        
+        #ham {
+            display: none;
+        }
+
         #search {
             background-color: $accentColor;
             border: solid 1px $darkColor;
@@ -78,7 +80,7 @@ body {
             }
         }
     }
-    
+
     #hero {
         margin: 0px 10%;
         text-align: center;
@@ -101,12 +103,12 @@ body {
             line-height: 1.4;
             letter-spacing: -0.5px;
         }
-        
+
         form {
             align-self: start;
             h5 {
                 font-size: 30px;
-                margin-bottom: 28px;        
+                margin-bottom: 28px;
                 line-height: 2;
             }
             select {
@@ -123,7 +125,6 @@ body {
                 &:focus {
                     outline: none;
                 }
-                
             }
             button {
                 @include button();
@@ -131,27 +132,27 @@ body {
         }
     }
 
-    #dataContainer{
+    #dataContainer {
         text-align: center;
         background: rgba(150, 174, 194, 0.5);
         border-radius: 40px;
         font-size: 22px;
         margin: 0px 15% 70px 15%;
         padding: 24px 0px;
-        #flexContainer{
+        #flexContainer {
             text-align: left;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
-            div{
+            div {
                 padding: 15px;
             }
         }
-        
-        img{
-            margin: 0px auto ;
+
+        img {
+            margin: 0px auto;
         }
     }
 }
-@import 'Media-queries'
+@import "media-queries";

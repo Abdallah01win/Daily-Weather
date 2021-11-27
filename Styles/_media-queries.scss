@@ -20,18 +20,19 @@
     }
 }
 @media (max-width: 675px) {
-    body {
-        nav {
-            margin-top: 15px;
-            margin-bottom: 15px;
-            #links {
-                padding: 0px;
-                .link {
-                    display: none;
+    html {
+        position: relative;
+        body {
+            nav {
+                margin-top: 15px;
+                margin-bottom: 15px;
+                #logo {
+                    z-index: 3;
                 }
                 #ham {
                     display: flex;
                     flex-direction: column;
+                    z-index: 4;
                     .ham-line {
                         height: 4px;
                         width: 40px;
@@ -39,17 +40,35 @@
                         margin: 5px 0px;
                     }
                 }
+                #links {
+                    display: none;
+                }
+                .show-nav {
+                    // important key word because of the conflect between a class(show-nav) and an id (links)
+                    display: flex !important;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center !important;
+                    padding: 0px;
+                    position: absolute;
+                    background: $accentColor;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100vh;
+                    gap: 22px;
+                    font-size: 36px;
+                }
             }
-        }
-        #dataContainer {
-            margin: 0px 0% 70px 0%;
-            #flexContainer{
-                text-align: center;
+            #dataContainer {
+                margin: 0px 0% 70px 0%;
+                #flexContainer {
+                    text-align: center;
+                }
             }
         }
     }
 }
-
 @media (max-width: 555px) {
     body {
         #hero {
@@ -57,14 +76,14 @@
                 font-size: 52px;
                 margin-top: 24px;
             }
-            h3{
+            h3 {
                 font-size: 32px;
             }
             form {
                 h5 {
                     font-size: 24px;
                 }
-                select{
+                select {
                     text-align: center;
                     font-size: 22px;
                 }
@@ -105,11 +124,11 @@
                 margin-bottom: 25px;
                 font-size: 18px;
             }
-            form{
-                h5{
+            form {
+                h5 {
                     line-height: 1.2;
                 }
-                select{
+                select {
                     font-size: 20px;
                 }
             }
